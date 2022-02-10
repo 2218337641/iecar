@@ -15,3 +15,7 @@ npm run serve
 ```
 npm run build
 ```
+
+
+下载map文件件放进echarts文件夹中，有省会中心和省域中心两种
+先用mockjs来模拟后端传过来的数据
