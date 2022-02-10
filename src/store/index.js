@@ -139,37 +139,24 @@ export default new Vuex.Store({
     openLoading(state){
       state.isLoading = true
     },
-    addCount(state){
-      state.showCount++
-      if(state.showCount>=70){
-        state.showCount = 1
-      }
-    }
+    // addCount(state){
+    //   state.showCount++
+    //   if(state.showCount>=70){
+    //     state.showCount = 1
+    //   }
+    // }
   },
   actions: {
     fetchHeatChinaRealData({state,commit},chartsObj){
-      axios.get('./js/heatChinaRealData.json').then((res)=>{
-        let data=res.data
-        let paleData = ((state,data)=>{
-          let arr = []
-          let len = data.length
-          var i = 1
-          while(len--){
-            let geoCoord = state.geoCoordMap[data[len].name]
-            if(geoCoord){
-              arr.push({
-                name:data[len].name,
-                value:geoCoord.concat(data[len].value)
-              },
-              i++)
-            }
-          }
-            return arr
-          })(state,data)
+      axios.get('/data/index').then((res)=>{
+        let arr = res.data
+        console.log(arr)
+        // return arr
           // 
           // let lightData = paleData.sort((a,b)=>{
           //   return b.value - a.value
           // }).slice(0+state.showCount,state.showCityNumber+state.showCount)
+          // 加载特效
           if(state.isLoading){
             chartsObj.hideLoading()
             commit('closeLoading')
@@ -178,7 +165,7 @@ export default new Vuex.Store({
             series:[
               {
                 name:'二手车销量',
-                data:paleData
+                data:arr
               },
               // {
               //   name:'top5',
@@ -186,7 +173,7 @@ export default new Vuex.Store({
               // }
             ]
           })
-          commit('addCount')
+          // commit('addCount')
         }
       )
     }
