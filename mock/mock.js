@@ -9,23 +9,23 @@ const Random = Mock.Random
 //     }
 // }
 var arr =[  
-    {name: '北京',value: Random.float(0,1000,0,3) },{name: '天津',value: Random.float(0,1000,0,3) },  
-    {name: '上海',value: Random.float(0,1000,0,3) },{name: '重庆',value: Random.float(0,1000,0,3) },  
-    {name: '河北',value: Random.float(0,1000,0,3) },{name: '河南',value: Random.float(0,1000,0,3) },  
-    {name: '云南',value: Random.float(0,1000,0,3) },{name: '辽宁',value: Random.float(0,1000,0,3) },  
-    {name: '黑龙江',value: Random.float(0,1000,0,3) },{name: '湖南',value: Random.float(0,1000,0,3) },  
-    {name: '安徽',value: Random.float(0,1000,0,3) },{name: '山东',value: Random.float(0,1000,0,3) },  
-    {name: '新疆',value: Random.float(0,1000,0,3) },{name: '江苏',value: Random.float(0,1000,0,3) },  
-    {name: '浙江',value: Random.float(0,1000,0,3) },{name: '江西',value: Random.float(0,1000,0,3) },  
-    {name: '湖北',value: Random.float(0,1000,0,3) },{name: '广西',value: Random.float(0,1000,0,3) },  
-    {name: '甘肃',value: Random.float(0,1000,0,3) },{name: '山西',value: Random.float(0,1000,0,3) },  
-    {name: '内蒙古',value: Random.float(0,1000,0,3) },{name: '陕西',value: Random.float(0,1000,0,3) },  
-    {name: '吉林',value: Random.float(0,1000,0,3) },{name: '福建',value: Random.float(0,1000,0,3) },  
-    {name: '贵州',value: Random.float(0,1000,0,3) },{name: '广东',value: Random.float(0,1000,0,3) },  
-    {name: '青海',value: Random.float(0,1000,0,3) },{name: '西藏',value: Random.float(0,1000,0,3) },  
-    {name: '四川',value: Random.float(0,1000,0,3) },{name: '宁夏',value: Random.float(0,1000,0,3) },  
-    {name: '海南',value: Random.float(0,1000,0,3) },{name: '台湾',value: Random.float(0,1000,0,3) },  
-    {name: '香港',value: Random.float(0,1000,0,3) },{name: '澳门',value: Random.float(0,1000,0,3) },{name: '南海诸岛',value: Random.float(0,1000,0,3) }
+    {name: '北京',value: ''+Random.float(0,1000,0,3) },{name: '天津',value: ''+Random.float(0,1000,0,3) },  
+    {name: '上海',value: ''+Random.float(0,1000,0,3) },{name: '重庆',value: ''+Random.float(0,1000,0,3) },  
+    {name: '河北',value: ''+Random.float(0,1000,0,3) },{name: '河南',value: ''+Random.float(0,1000,0,3) },  
+    {name: '云南',value: ''+Random.float(0,1000,0,3) },{name: '辽宁',value: ''+Random.float(0,1000,0,3) },  
+    {name: '黑龙江',value: ''+Random.float(0,1000,0,3) },{name: '湖南',value: ''+Random.float(0,1000,0,3) },  
+    {name: '安徽',value: ''+Random.float(0,1000,0,3) },{name: '山东',value: ''+Random.float(0,1000,0,3) },  
+    {name: '新疆',value: ''+Random.float(0,1000,0,3) },{name: '江苏',value: ''+Random.float(0,1000,0,3) },  
+    {name: '浙江',value: ''+Random.float(0,1000,0,3) },{name: '江西',value: ''+Random.float(0,1000,0,3) },  
+    {name: '湖北',value: ''+Random.float(0,1000,0,3) },{name: '广西',value: ''+Random.float(0,1000,0,3) },  
+    {name: '甘肃',value: ''+Random.float(0,1000,0,3) },{name: '山西',value: ''+Random.float(0,1000,0,3) },  
+    {name: '内蒙古',value: ''+Random.float(0,1000,0,3) },{name: '陕西',value: ''+Random.float(0,1000,0,3) },  
+    {name: '吉林',value: ''+Random.float(0,1000,0,3) },{name: '福建',value: ''+Random.float(0,1000,0,3) },  
+    {name: '贵州',value: ''+Random.float(0,1000,0,3) },{name: '广东',value: ''+Random.float(0,1000,0,3) },  
+    {name: '青海',value: ''+Random.float(0,1000,0,3) },{name: '西藏',value: ''+Random.float(0,1000,0,3) },  
+    {name: '四川',value: ''+Random.float(0,1000,0,3) },{name: '宁夏',value: ''+Random.float(0,1000,0,3) },  
+    {name: '海南',value: ''+Random.float(0,1000,0,3) },{name: '台湾',value: ''+Random.float(0,1000,0,3) },  
+    {name: '香港',value: ''+Random.float(0,1000,0,3) },{name: '澳门',value: ''+Random.float(0,1000,0,3) },{name: '南海诸岛',value: ''+Random.float(0,1000,0,3) }
 ];
 
 

@@ -26,7 +26,25 @@ require('echarts/map/js/china')
 export default {
     data(){
         return{
-
+            locationCarsList:[],
+            // dataList:[{"id": "320000","name": "江苏","value": "95"},
+            //     {"id": "340000","name": "安徽","value": "60"},
+            //     {"id": "330000","name": "浙江","value": "105"},
+            //     {"id": "310000","name": "上海","value": "75"},
+            //     {"id": "370000","name": "山东","value": "50"},
+            //     {"id": "320100","name": "南京市","value": "21"},
+            //     {"id": "320200","name": "无锡市","value": "23"},
+            //     {"id": "320300","name": "徐州市","value": "15"},
+            //     {"id": "320400","name": "常州市","value": "20"},
+            //     {"id": "320500","name": "苏州市","value": "25"},
+            //     {"id": "321000","name": "扬州市","value": "15"},
+            //     {"id": "321100","name": "镇江市","value": "11"},
+            //     {"id": "321200","name": "泰州市","value": "12"},
+            //     {"id": "320800","name": "淮安市","value": "6"},
+            //     {"id": "320600","name": "南通市","value": "5"},
+            //     {"id": "320900","name": "盐城市","value": "4"},
+            //     {"id": "320700","name": "连云港市","value": "8"},
+            //     {"id": "321300","name": "宿迁市","value": "11"}]
         }
     },
     created(){
@@ -41,49 +59,62 @@ export default {
             maskColor:'#272D3A',
             zlevel:0
         }
-        // this.fetchs()
-        // console.log(sere)
+        console.log(this.dataList)
+        this.fetchs()
+        console.log(this.locationCarsList)
         myChart.showLoading(showLoadingDefault)
         this.$nextTick(function(){
-            this.drawLine(myChart);
+        //     this.drawLine(myChart);
+        this.fetchs(myChart)
         })
         this.$store.commit('openLoading')
         this.$store.dispatch('fetchHeatChinaRealData', myChart)
     },
     methods:{
-        // fetchs(){
-        //     let _this = this
-        //     this.axios.get('/data/index',{
-        //         params:{}
-        //     }).then(res=>{
-        //         console.log(res)
-        //     }).catch(err=>{
-        //         console.log(err)
-        //     })
-        // },
-        drawLine(Objs){
-            var option={
-                backgroundColor:'#272D3A',
+        drawLine(loo,obj){
+            var option = {
+                // backgroundColor:'#272D3A',
                 // 标题
                 title:{
                     text:'中国地图',
                     left:'center',
                     textStyle:{
-                        color:'#fff'
+                        fontSize:33,
+                        color:'#000',
+                        fontWeight:'bold'
                     }
                 },
+                // 提示框
+                tooltip:{
+                    // 数据项图形触发，在无类目轴的图表中使用
+                    trigger:'item',
+                    formatter: function (params) {
+                    var nameArr = params.seriesName.split(",");
+                    if(null!=params.data&&"undefined"!=params.data){
+                        if(isNaN(params.value) || ""==params.value || null ==params.value){
+                            params.value=0;
+                        }
+                        return params.name + '<br />' + nameArr[0] + '：' + params.value ;
+                    }else{
+                        if(isNaN(params.value) || ""==params.value || null ==params.value){
+                            params.value=0;
+                        }
+                        return params.name + '<br />' + nameArr[0] + '：' + params.value;
+                    }
+                }//数据格式化
+                },
                 // 视觉映射插件
-                // 设置组件的最大值最小值，且分段数以及在选择范围中的视觉元素定义颜色、尺寸等
                 visualMap:{
                     show:true,
-                    min:1,
+                    min:0,
                     max:1000,
-                    // splitNumber:5,
+                    left:'left',
+                    top:'top',
+                    text:['高','低'],//取值范围的文字
+                    // seriesIndex:0,
+                    // calculable:true,
                     inRange:{
-                        color:['#d994e5b','#eac736','#50a3ba'].reverse()
-                    },
-                    textStyle:{
-                        color:'#fff'
+                        color:['#e0ffff', '#F50900']//取值范围的颜色
                     }
                 },
                 // 图例按钮
@@ -99,86 +130,61 @@ export default {
                 // 地理坐标系组件
                 geo:{
                     map:'china',
+                    // 视角缩放比例
+                    zoom:1.23,
                     label:{
                         // true会直接显示城市名称
-                        emphasis:{
-                            show:true
+                        normal:{
+                            show:true,
+                            fontSize:'12',
+                            color:'#fff'
                         }
                     },
+                    // 是否开启鼠标缩放和平移漫游
+                    // roam:true,
                     itemStyle:{
                         // 地图背景色
                         normal:{
+                            // show:true,
                             areaColor:'#465471',
-                            borderColor:'#282F3C'
+                            borderColor:'#282F3C',
                         },
                         // 悬浮时
                         emphasis:{
-                            areaColor:'#8796B4'
+                            areaColor:'#8796B4',//鼠标选择区域颜色
+                            shadowOffsetX:0,
+                            shadowOffsetY:0,
+                            shadowBlur:20,
+                            borderWidth:0,
+                            shadowColor:'rgba(0,0,0,0.5)'
                         }
                     }
                 },
-                // 系列列表
-                // series:[
-                //     {
-                //         name:'二手车市场销量',
-                //         type:'scatter',
-                //         // 使用地理坐标系，通过geoIndex置顶相应的地理坐标系组件
-                //         coordinateSystem:'geo',
-                //         data:[],
-                //         // 标记的大小
-                //         symbolSize:12,
-                //         // 鼠标悬浮的时候在圆点上显示数值
-                //         label:{
-                //             normal:{
-                //                 show:false
-                //             },
-                //             emphasis:{
-                //                 show:false
-                //             }
-                //         },
-                //         itemStyle: {
-                //             normal: {
-                //                 color: '#ddb926'
-                //             },
-                //             // 鼠标悬浮的时候圆点样式变化
-                //             emphasis: {
-                //                 borderColor: '#fff',
-                //                 borderWidth: 1
-                //             }
-                //         }
-                //     },
-                //     {
-                //         name: 'top5',
-                //         // 表的类型 这里是散点
-                //         type: 'effectScatter',
-                //         // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
-                //         coordinateSystem: 'geo',
-                //         data: [],
-                //         // 标记的大小
-                //         symbolSize: 12,
-                //         showEffectOn: 'render',
-                //         rippleEffect: {
-                //         brushType: 'stroke'
-                //         },
-                //         hoverAnimation: true,
-                //         label: {
-                //         normal: {
-                //             show: false
-                //         }
-                //         },
-                //         itemStyle: {
-                //         normal: {
-                //             color: '#f4e925',
-                //             shadowBlur: 10,
-                //             shadowColor: '#333'
-                //         }
-                //         },
-                //         zlevel: 1
-                //     }
-                // ]
+                series:[
+                    {
+                        name:'数量',
+                        type:'map',
+                        geoIndex:0,
+                        // coordinateSystem:'geo',
+                        data:loo,
+                        // pointSize:8,
+                        // blurSize:5
+                    }]
             }
-            Objs.setOption(option)
+            obj.setOption(option)
+            // Chart.setOption(option)
         },
+        fetchs(objs){
+            var api = '/data/index'
+            this.axios.get(api).then((res)=>{
+                this.locationCarsList = res.data,
+                console.log('-----------------')
+                console.log(this.locationCarsList)
+                this.drawLine(this.locationCarsList,objs)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
     }
 }
 </script>

@@ -1,13 +1,13 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
 // 解决重复点击路由菜单报错问题
-const originalPush = Router.prototype.push;
-Router.prototype.push = function push(location) {
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch((err) => err);
 };
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -45,20 +45,20 @@ const routes = [
 // VueRouter.prototype.push = function push(loction){
 //   return originalPush.call(this,location).catch(err => err)
 // }
-// const router = new VueRouter({
-//   routes
-// })
+const router = new VueRouter({
+  routes
+})
 
-const createRouter=()=>
-  new Router({
-    routes,
-  })
+// const createRouter=()=>
+//   new Router({
+//     routes,
+//   })
 
-  // 路由初始化
-  const router = createRouter();
+//   // 路由初始化
+//   const router = createRouter();
 
-  export function resetRouter(){
-    const newRouter=createRouter();
-    router.matcher=newRouter.matcher;
-  }
+//   export function resetRouter(){
+//     const newRouter=createRouter();
+//     router.matcher=newRouter.matcher;
+//   }
 export default router

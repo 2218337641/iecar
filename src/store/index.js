@@ -106,7 +106,6 @@ export default new Vuex.Store({
         yAxis:{},
         series:series,
       }
-      console.log(option)
       state.x2 = option
     },
 
@@ -148,9 +147,8 @@ export default new Vuex.Store({
   },
   actions: {
     fetchHeatChinaRealData({state,commit},chartsObj){
-      axios.get('/data/index').then((res)=>{
-        let arr = res.data
-        console.log(arr)
+      // axios.get('/data/index').then((res)=>{
+        // var arr = res.data
         // return arr
           // 
           // let lightData = paleData.sort((a,b)=>{
@@ -161,21 +159,22 @@ export default new Vuex.Store({
             chartsObj.hideLoading()
             commit('closeLoading')
           }
-          chartsObj.setOption({
-            series:[
-              {
-                name:'二手车销量',
-                data:arr
-              },
+          // chartsObj.setOption({
+          //   series:[
+          //     {
+          //       name:'二手车销量',
+          //       data:arr
+          //     },
               // {
               //   name:'top5',
               //   data:lightData
               // }
-            ]
-          })
+            // ]
+          // })
           // commit('addCount')
-        }
-      )
+          // return arr
+      //   },
+      // )
     }
   },
   modules: {
